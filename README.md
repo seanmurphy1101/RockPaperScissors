@@ -1,0 +1,1 @@
+This is one of my first projects  using CSS, HTML, and JavaScript together. I plan on devleoping the style a bit in the future.
