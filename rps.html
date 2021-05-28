@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<style>
+    .center{
+        width: 100px;
+	    height: 100px;
+	
+	    position: absolute;
+	    top:0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+  	
+	    margin: auto;
+    }
+    .centerFlex {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 200px;
+    }
+    button{
+        margin-left: 20px;
+        width: 20%;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 25px;
+    }
+    .bm{
+        text-align: center;
+        margin-top: 200px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 40px;
+    }
+    
+</style>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Rock Paper Scissors</title>
+    </head>
+    <body>
+        <div class="centerFlex">
+            <button onclick="game('rock')">Rock</button>
+            <button onclick="game('paper')">Paper</button>
+            <button onclick="game('scissors')">Scissors</button>
+        </div>
+        <p class="bm" id="result">
+            Click an option to begin!
+        </p>
+    </body>
+
+
+    <script>
+        // chooses random number between 0 and 2, which correspond to an RPS choice
+        // computerPlay(): Number
+        function computerPlay(){
+            const choose = Math.floor(Math.random()*3);
+            if (choose===0){
+                return "rock";
+            }
+            else if (choose===1){
+                return "paper";
+            }
+            else {
+                return "scissors";
+            }
+        }
+        // Given a player's input, creates a computer choice and 
+        // playRound(playerSelection: String): String
+        function playRound(playerSelection){
+            let computerSelection=computerPlay();
+            playerSelection=playerSelection.toLowerCase();
+            if (playerSelection===computerSelection){
+                return "Tie";
+            }
+            else if (playerSelection==="rock") {
+                if (computerSelection==="paper"){
+                    return "You Lose, you chose: "+playerSelection+" and the computer chose: "+computerSelection;
+                }
+                else {
+                    return "You Win, you chose: "+playerSelection+" and the computer chose: "+computerSelection;
+                }
+            }
+            else if (playerSelection==="paper") {
+                if (computerSelection==="scissors"){
+                    return "You Lose, you chose: "+playerSelection+" and the computer chose: "+computerSelection;
+                }
+                else {
+                    return "You Win, you chose: "+playerSelection+" and the computer chose: "+computerSelection;
+                }
+            }
+            else {
+                if (computerSelection==="rock"){
+                    return "You Lose"
+                }
+                else {
+                    return "You Win, you chose: "+playerSelection+" and the computer chose: "+computerSelection;
+                }
+            }
+
+        }
+
+        // runs a game with the given pick, alters the html of the page to display the given result
+        // game(pick: String)
+        function game(pick){
+            let res = playRound(pick);
+            document.getElementById("result").innerHTML = res;;
+        } 
+    </script>
+</html>
